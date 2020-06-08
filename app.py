@@ -36,12 +36,13 @@ def handle_message(event):
     message = event.message.text
 
 # Simple echo
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
+    
 	
 # Replying with spesific 
     if message == "Hi":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Hello, Sam.'))	
-
+    else line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
+    
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
