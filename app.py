@@ -35,10 +35,10 @@ def callback():
 def handle_message(event):
 
 #Return text message
-	message = event.message.text
+#	message = event.message.text
 
 #Simple echo
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text= event.message.text)
 	
 #Repling spesific message
 #    if message == "Hi":
