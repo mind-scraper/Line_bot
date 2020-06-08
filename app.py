@@ -42,7 +42,7 @@ def handle_message(event):
     if message == "Hi":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, Sam.'))	
         
-    if message == "cetak id"
+    if message == "cetak id":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=user_id))
     
 import os
