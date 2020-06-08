@@ -40,7 +40,7 @@ def handle_message(event):
 	
 # Replying with spesific message
     if message == "Hi":
-        profile = line_bot_api.get_group_member_profile(text=event.source.group_id, text=event.source.user_id)
+        profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, ' + profile.display_name))	
         
     if message == "cetak id":
