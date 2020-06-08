@@ -39,7 +39,10 @@ def handle_message(event):
 #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 	
 # Replying with spesific message
+    
+
     if message == "Hi":
+        profile = line_bot_api.get_group_member_profile(text=event.source.group_id, text=event.source.user_id)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo,' + profile.display_name))	
         
     if message == "cetak id":
@@ -48,7 +51,7 @@ def handle_message(event):
     if message == "cetak id grup":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.group_id))
 
-    profile = line_bot_api.get_group_member_profile("C3a267ddcca159954bfd62d9148f9c669", "Udd20d357d3929f55680d1f989e99b6aa")
+    
 
     if message == "siapa saya?":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=profile.display_name))
