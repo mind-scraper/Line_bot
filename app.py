@@ -40,7 +40,7 @@ def handle_message(event):
 	
 # Replying with spesific message
     if message == "Hi":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, @Samuel Putra'))	
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo,' + profile.display_name))	
         
     if message == "cetak id":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.user_id))
