@@ -34,12 +34,17 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-#    message = TextSendMessage(text=event.message.text)
-#    line_bot_api.reply_message(event.reply_token, message)
+#Return text message
+	message = event.message.text
+
+#Simple echo
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 	
-    message = event.message.text
+#Repling spesific message
     if message == "Hi":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Hello, Sam.'))
+
+
 
 import os
 if __name__ == "__main__":
