@@ -37,6 +37,10 @@ def handle_message(event):
 
 # Simple echo
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
+	
+# Replying with spesific 
+	if message == "Hi":
+		line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Hello, Sam.'))	
 
 import os
 if __name__ == "__main__":
