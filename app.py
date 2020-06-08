@@ -44,6 +44,9 @@ def handle_message(event):
         
     if message == "cetak id":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.user_id))
+
+    if message == "cetak id grup":
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.group_id))
     
 import os
 if __name__ == "__main__":
