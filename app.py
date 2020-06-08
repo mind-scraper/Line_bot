@@ -36,13 +36,14 @@ def handle_message(event):
     message = event.message.text
 
 # Simple echo
-    
+#    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 	
 # Replying with spesific 
     if message == "Hi":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Hello, Sam.'))	
-    else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, Sam.'))	
+        
+    if message == "cetak id"
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=user_id))
     
 import os
 if __name__ == "__main__":
