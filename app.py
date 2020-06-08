@@ -38,9 +38,9 @@ def handle_message(event):
 # Simple echo
 #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 	
-# Replying with spesific 
+# Replying with spesific message
     if message == "Hi":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, Sam.'))	
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, @Samuel Putra'))	
         
     if message == "cetak id":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.user_id))
