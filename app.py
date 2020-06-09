@@ -60,7 +60,7 @@ def handle_message(event):
                     if event.source.user_id == "Udd20d357d3929f55680d1f989e99b6aa":
                             line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang.')
 #                    else :
-                    if event.source.user_id <> "Udd20d357d3929f55680d1f989e99b6aa":
+                    if event.source.user_id != "Udd20d357d3929f55680d1f989e99b6aa":
                             line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name) + '.')
 	    break
     
