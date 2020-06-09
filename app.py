@@ -34,13 +34,12 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
-
+    profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
 # Simple echo
 #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 	
 # Replying with spesific message
-    if message == "Hi":
-        profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
+    if message == "Hi":       
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, ' + profile.display_name))	
         
     if message == "cetak id":
@@ -57,11 +56,12 @@ def handle_message(event):
     for i in range(len(message)-1):
         a = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
         if a == 'makasih' or a == 'Makasih':
-            if event.source.user_id == 'Udd20d357d3929f55680d1f989e99b6aa':
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang.')
-            else:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name) + '.')
-                break        
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name) + '.')
+            break
+#           if event.source.user_id == 'Udd20d357d3929f55680d1f989e99b6aa':
+#                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang.')
+#            else:
+                        
     
 import os
 if __name__ == "__main__":
