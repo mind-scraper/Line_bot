@@ -49,10 +49,19 @@ def handle_message(event):
     if message == "cetak id grup":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.group_id))
 
-    profile = line_bot_api.get_group_member_profile("C3a267ddcca159954bfd62d9148f9c669", "Udd20d357d3929f55680d1f989e99b6aa")
+#    profile = line_bot_api.get_group_member_profile("C3a267ddcca159954bfd62d9148f9c669", "Udd20d357d3929f55680d1f989e99b6aa")
 
-    if message == "siapa saya?":
+#    if message == "siapa saya?":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=profile.display_name))
+
+    for i in range(len(message)-1):
+	a = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
+	if a == 'makasih' or a == 'Makasih':
+            if event.source.user_id == "Udd20d357d3929f55680d1f989e99b6aa":
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang.')
+            else:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name) + '.')
+	    break
     
 import os
 if __name__ == "__main__":
