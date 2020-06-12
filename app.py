@@ -12,6 +12,10 @@ import requests
 
 import json
 
+import schedule
+
+import time
+
 app = Flask(__name__)
 
 # Channel Access Token
@@ -72,12 +76,7 @@ def handle_message(event):
     if message == "cetak id grup":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.group_id))
 
-    #give name
-    if message == "Siapa saya?":
-        profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Kamu ' + profile.display_name))
-
-    #reply several words
+    #respon several words
     for i in range(len(message)-2):
         profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
         a = message[i]+message[i+1]+message[i+2]
