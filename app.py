@@ -36,30 +36,18 @@ def callback():
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
-    return 'OK'
-
-
-#id master
-id_tesgrup = 'C3a267ddcca159954bfd62d9148f9c669'
-id_rivendell = 'C3207426a3978e0a7528ddbdfcdab110f'
-id_sam = 'Udd20d357d3929f55680d1f989e99b6aa'
-
-#id rakyat
-id_ayu = 'Uca07ea0c4f6209bc6d52b23a585903bd'
-id_bangjer = 'Ue14da98260600f5ef5de7e38285c07db'
-id_edu = 'U4cd596ee9cdac19564bc669dfaadd4d5'
-id_anan = 'Uce13e1955b3aca4445a16eb7f4e889d3'
-id_daniel = 'U3eeb15eedf7b1e8fbf8d7ac045bfbc6a'
-id_bangbil = 'U7c91bf05be00a54463a1c085779d1c4b'
-id_nafis = 'U68ad97d614353b3ba025321e4042ec17'
-id_tab = 'U3823f9943c099dcc799f7aec0f80e216'
-
+    return 'OK
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     
     message = event.message.tex
-       
+
+    # id master
+    id_tesgrup = 'C3a267ddcca159954bfd62d9148f9c669'
+    id_rivendell = 'C3207426a3978e0a7528ddbdfcdab110f'
+    id_sam = 'Udd20d357d3929f55680d1f989e99b6aa'
+
     #answer question
     if message[len(message)-1] == '?':
         query = message
@@ -100,6 +88,20 @@ def handle_message(event):
                 break
 
 #schedule
+#id master
+id_tesgrup = 'C3a267ddcca159954bfd62d9148f9c669'
+id_rivendell = 'C3207426a3978e0a7528ddbdfcdab110f'
+id_sam = 'Udd20d357d3929f55680d1f989e99b6aa'
+
+#id rakyat
+id_ayu = 'Uca07ea0c4f6209bc6d52b23a585903bd'
+id_bangjer = 'Ue14da98260600f5ef5de7e38285c07db'
+id_edu = 'U4cd596ee9cdac19564bc669dfaadd4d5'
+id_anan = 'Uce13e1955b3aca4445a16eb7f4e889d3'
+id_daniel = 'U3eeb15eedf7b1e8fbf8d7ac045bfbc6a'
+id_bangbil = 'U7c91bf05be00a54463a1c085779d1c4b'
+id_nafis = 'U68ad97d614353b3ba025321e4042ec17'
+id_tab = 'U3823f9943c099dcc799f7aec0f80e216'
 #def job():
 #    line_bot_api.push_message(id_tesgrup, TextSendMessage(text='30 second has passed...'))
 #schedule.every(0.5).minutes.do(job)
