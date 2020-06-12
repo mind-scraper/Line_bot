@@ -88,7 +88,7 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, sayang :)'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, ' + profile.display_name + '.'))
-            break
+                break
 
         b = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
         if b == 'makasih' or b == 'Makasih':
@@ -96,13 +96,13 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang :)'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name + '.'))
-            break
+                break
 
         c = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]
         if c == 'UPDATE':
             if event.source.user_id == id_sam:
                 line_bot_api.push_message(id_rivendell, TextSendMessage(text=message))
-            break
+                break
 
     #schedule
 
