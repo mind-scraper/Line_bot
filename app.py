@@ -75,11 +75,17 @@ def handle_message(event):
             
         b = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
         if b == 'makasih' or b == 'Makasih':
-            if event.source.user_id == 'Udd20d357d3929f55680d1f989e99b6aa':
+            
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang :)'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name + '.'))
-        
+
+        c = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]
+        if c == 'UPDATE':
+            if event.source.user_id == 'Udd20d357d3929f55680d1f989e99b6aa':
+                line_bot_api.push_message('C3207426a3978e0a7528ddbdfcdab110f', TextSendMessage(text=message))
+            
+    
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
