@@ -8,7 +8,7 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
-from requests import requests
+import requests
 
 app = Flask(__name__)
 
