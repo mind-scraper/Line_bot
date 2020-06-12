@@ -41,7 +41,7 @@ def handle_message(event):
 #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 
 # Replying with spesific message      
-    if message[len(message)] == '?':
+    if message[len(message)-1] == '?':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Ini pertanyaan.'))
         query = message
         api_result = requests.get('http://api.serpstack.com/search?access_key=392fb6da2083ccf6427359826b72f2aa&query=' + query + '&engine=google&google_domain=google.co.id&page=1&output=json&%20location=surabaya')
