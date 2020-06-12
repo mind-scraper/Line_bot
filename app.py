@@ -37,13 +37,26 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    
     message = event.message.text
-    profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
-# Simple echo
-#    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 
-# Replying with spesific message      
+    #id master
+    id_tesgrup = 'C3a267ddcca159954bfd62d9148f9c669'
+    id_rivendell = 'C3207426a3978e0a7528ddbdfcdab110f'
+    id_sam = 'Udd20d357d3929f55680d1f989e99b6aa'
 
+    #id rakyat	
+    id_ayu = 'Uca07ea0c4f6209bc6d52b23a585903bd'
+    id_bangjer = 'Ue14da98260600f5ef5de7e38285c07db'
+    id_edu = 'U4cd596ee9cdac19564bc669dfaadd4d5'
+    id_anan = 'Uce13e1955b3aca4445a16eb7f4e889d3'
+    id_daniel = 'U3eeb15eedf7b1e8fbf8d7ac045bfbc6a'
+    id_bangbil = 'U7c91bf05be00a54463a1c085779d1c4b'
+    id_nafis = 'U68ad97d614353b3ba025321e4042ec17'
+    id_tab = 'U3823f9943c099dcc799f7aec0f80e216'
+
+       
+    #answer question
     if message[len(message)-1] == '?':
         query = message
         api_result = requests.get('http://api.serpstack.com/search?access_key=392fb6da2083ccf6427359826b72f2aa&query=' + query + '&engine=google&google_domain=google.co.id&page=1&output=json&%20location=surabaya')
@@ -52,40 +65,48 @@ def handle_message(event):
             if result['snippet'] != '':
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result['snippet']))
             break
-        
+    
+    #give id    
     if message == "cetak id":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.user_id))
-
     if message == "cetak id grup":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.group_id))
 
-#    profile = line_bot_api.get_group_member_profile("C3a267ddcca159954bfd62d9148f9c669", "Udd20d357d3929f55680d1f989e99b6aa")
+    #give name
+    if message == "Siapa saya?":
+        profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Kamu ' + profile.display_name))
 
-#    if message == "siapa saya?":
-#        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=profile.display_name))
-
+    #reply several words
     for i in range(len(message)-1):
+
+	profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
 
         a = message[i]+message[i+1]+message[i+2]
         if a == 'hi ' or a == 'Hi ':
-            if event.source.user_id == 'Udd20d357d3929f55680d1f989e99b6aa':
+            if event.source.user_id == id_sam:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, sayang :)'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, ' + profile.display_name + '.'))
-            
+            break
+
         b = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
         if b == 'makasih' or b == 'Makasih':
-            if event.source.user_id == 'Udd20d357d3929f55680d1f989e99b6aa':
+            if event.source.user_id == id_sam:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang :)'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name + '.'))
+            break
 
         c = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]
         if c == 'UPDATE':
-            if event.source.user_id == 'Udd20d357d3929f55680d1f989e99b6aa':
-                line_bot_api.push_message('C3207426a3978e0a7528ddbdfcdab110f', TextSendMessage(text=message))
-            
+            if event.source.user_id == id_sam:
+                line_bot_api.push_message(id_rivendell, TextSendMessage(text=message))
+            break
+
+    #schedule
     
+
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
