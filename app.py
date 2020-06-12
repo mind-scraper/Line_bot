@@ -10,6 +10,8 @@ from linebot.models import *
 
 import requests
 
+import json
+
 app = Flask(__name__)
 
 # Channel Access Token
@@ -41,14 +43,6 @@ def handle_message(event):
 #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 
 # Replying with spesific message      
-    if message[len(message)-1] == '?':
-        query = message
-        api_result = requests.get('http://api.serpstack.com/search?access_key=392fb6da2083ccf6427359826b72f2aa&query=' + query + '&engine=google&google_domain=google.co.id&page=1&output=json&%20location=surabaya')
-        api_response = api_result.json()
-        for number, result in enumerate(api_response['organic_results']):
-            if result['snippet'] != '':
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result['snippet']))
-            break
 
     if message == "cetak id":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.user_id))
@@ -69,7 +63,6 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, sayang :)'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, ' + profile.display_name + '.'))
-                break
             
         b = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
         if b == 'makasih' or b == 'Makasih':
@@ -77,8 +70,17 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang :)'))
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name + '.'))
-                break
     
+    if message[len(message)-1] == '?':
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Ini pertanyaan.'))
+        query = message
+        api_result = requests.get('http://api.serpstack.com/search?access_key=392fb6da2083ccf6427359826b72f2aa&query=' + query + '&engine=google&google_domain=google.co.id&page=1&output=json&%20location=surabaya')
+        api_response = api_result.json()
+        for number, result in enumerate(api_response['organic_results']):
+            if result['snippet'] != '':
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=result['snippet']))
+            break
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Operasi selesai.'))
 
     
 import os

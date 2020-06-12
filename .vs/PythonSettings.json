@@ -1,0 +1,5 @@
+{
+  "SuppressPackageInstallationPrompt": true,
+  "TestFramework": "Pytest",
+  "Interpreter": "Workspace|Workspace|env"
+}
