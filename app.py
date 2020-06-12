@@ -78,10 +78,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Kamu ' + profile.display_name))
 
     #reply several words
-    for i in range(len(message)-1):
-
+    for i in range(len(message)-2):
 	    profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
-
         a = message[i]+message[i+1]+message[i+2]
         if a == 'hi ' or a == 'Hi ':
             if event.source.user_id == id_sam:
@@ -89,7 +87,6 @@ def handle_message(event):
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, ' + profile.display_name + '.'))
                 break
-
         b = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
         if b == 'makasih' or b == 'Makasih':
             if event.source.user_id == id_sam:
@@ -97,7 +94,6 @@ def handle_message(event):
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name + '.'))
                 break
-
         c = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]
         if c == 'UPDATE':
             if event.source.user_id == id_sam:
