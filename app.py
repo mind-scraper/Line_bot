@@ -80,7 +80,7 @@ def handle_message(event):
     #reply several words
     for i in range(len(message)-1):
 
-	profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
+	    profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
 
         a = message[i]+message[i+1]+message[i+2]
         if a == 'hi ' or a == 'Hi ':
@@ -105,7 +105,7 @@ def handle_message(event):
             break
 
     #schedule
-    
+
 
 import os
 if __name__ == "__main__":
