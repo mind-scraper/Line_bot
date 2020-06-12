@@ -42,7 +42,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     
-    message = event.message.tex
+    message = event.message.text
 
     # id master
     id_tesgrup = 'C3a267ddcca159954bfd62d9148f9c669'
