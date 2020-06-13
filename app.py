@@ -99,18 +99,53 @@ def handle_message(event):
                 break
 
 #schedule
-# #def job():
-#    line_bot_api.push_message(id_tesgrup, TextSendMessage(text='30 second has passed...'))
+def nama(id):
+    profile = line_bot_api.get_group_member_profile(id_rivendell, id)
+    return profile.display_name
+
+piket_senin = nama(id_bangjer) + ", " + nama(id_edu) + "."
+piket_selasa = nama(id_anan) + "."
+piket_rabu = nama(id_nafis) + "."
+piket_kamis = nama(id_daniel) + ", " + nama(id_ayu) + "."
+piket_jumat = nama(id_bangbil) + ", " + nama(id_tab) + "."
+
+def pesan_senin():
+    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_selasa + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+
+def pesan_selasa():
+    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_rabu + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+
+def pesan_rabu():
+    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_kamis + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+
+def pesan_kamis():
+    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_jumat + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+
+def pesan_jumat():
+    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Besok tidak ada piket. Kalian semua bisa begadang. Yey..."))
+
+def pesan_sabtu():
+    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Besok tidak ada piket. Kalian semua bisa begadang. Yey..."))
+
+def pesan_minggu():
+    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_senin + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+
 #schedule.every(0.5).minutes.do(job)
 #schedule.every().hour.do(job)
 #schedule.every().day.at("10:30").do(job)
 #schedule.every(5).to(10).minutes.do(job)
 #schedule.every().monday.do(job)
-#schedule.every().wednesday.at("13:15").do(job)
+schedule.every().monday.at("15:00").do(pesan_senin)
+schedule.every().tuesday.at("15:00").do(pesan_selasa)
+schedule.every().wednesday.at("15:00").do(pesan_rabu)
+schedule.every().thursday.at("15:00").do(pesan_kamis)
+schedule.every().friday.at("15:00").do(pesan_jumat)
+schedule.every().saturday.at("15:00").do(pesan_sabtu)
+schedule.every().sunday.at("15:00").do(pesan_minggu)
 #schedule.every().minute.at(":17").do(job)
-#while True:
-#    schedule.run_pending()
-#    time.sleep(1)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 
 import os
 if __name__ == "__main__":
