@@ -8,7 +8,7 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
-from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 
 import requests
 
@@ -113,26 +113,26 @@ piket_jumat = nama(id_bangbil) + ", " + nama(id_tab) + "."
 piket_sabtu = "Gifu dan anak-anaknya."
 piket_minggu = "Yoshi dan Gawa, cie."
 
-def job(piket_hari):
-    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_hari + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+#def job(piket_hari):
+#    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_hari + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
 
 #schedule.every(0.5).minutes.do(job)
 #schedule.every().hour.do(job)
 #schedule.every().day.at("10:30").do(job)
 #schedule.every(5).to(10).minutes.do(job)
 #schedule.every().monday.do(job)
-schedule.every().monday.at("15:00").do(job, piket_selasa)
-schedule.every().tuesday.at("15:00").do(job, piket_rabu)
-schedule.every().wednesday.at("15:00").do(job, piket_kamis)
-schedule.every().thursday.at("15:00").do(job, piket_jumat)
-schedule.every().friday.at("15:00").do(job, piket_sabtu)
-schedule.every().saturday.at("15:00").do(job, piket_minggu)
-schedule.every().sunday.at("15:00").do(job, piket_senin)
+#schedule.every().monday.at("15:00").do(job, piket_selasa)
+#schedule.every().tuesday.at("15:00").do(job, piket_rabu)
+#schedule.every().wednesday.at("15:00").do(job, piket_kamis)
+#schedule.every().thursday.at("15:00").do(job, piket_jumat)
+#schedule.every().friday.at("15:00").do(job, piket_sabtu)
+#schedule.every().saturday.at("15:00").do(job, piket_minggu)
+#schedule.every().sunday.at("15:00").do(job, piket_senin)
 #schedule.every().minute.at(":17").do(job)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+#while True:
+#    schedule.run_pending()
+#    time.sleep(1)
 
 sched = BackgroundScheduler()
 
