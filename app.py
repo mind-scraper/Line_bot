@@ -93,6 +93,8 @@ def handle_message(event):
                 
     keyword1 = ["hi ", "hi,", "Hi ", "Hi,", "Hallo", "hallo", "Halo", "halo", "Selamat","selamat","Salam","salam"]
     respond1 = ["Semoga harimu menyenangkan.", "Sudah mandi belum?", "Jangan lupa makan ya.", "Semangat ya." , "Andai waktu itu Newton duduk di bawah pohon kelapa...", "Ilmuan yang belajar fisika disebut fisikawan.", "Cahaya dari bumi hanya butuh 1,255 detik untuk mencapai bulan, selama kamu membaca tulisan ini.", "Physics is, hopefully, simple. Physicists are not. -Edward Teller-", "Curiosity adalah robot penjelajah Mars milik NASA. Tak heran tidak ada kucing di Mars.", "It doesn't matter how beautiful your theory is, it doesn't matter how smart you are. If it doesn't agree with experiment, it's wrong. In that simple statement is the key to science.-Richard Feynman-","It's Okay to say I don't know! There's no shame in that! The only shame is to pretend that we know everything.-Richard Feynman-","Be yourself; everyone else is already taken.-Oscar Wilde-","It would be better for the true physics if there were no mathematicians on earth. -Daniel Bernoulli-", "Nature doesn't really care about your beliefs.-Richard Feynman-", "Membacalah setiap hari.", "Jangan berhenti belajar.", "Bertanyalah.", "Tidak apa-apa melakukan kesalahan baru.", "Fisikawan tidak suka mencari-cari masalah. Masalah mereka sudah cukup banyak.", "All science is either physics or stamp collecting.-Ernest Rutherford-", "Hukum gravitasi tidak berlaku terhadap orang yang sedang jatuh cinta.-Albert Einstein-" ]
+    keyword2 = ["Terima kasih", "terima kasih", "thank", "Thank", "Mksh", "mksh", "Thx", "makasih", "Arigato", "arigato"]
+    respond2 = ["Sama-sama, ", "You're welcome, ", "No problem, ", "Halah santai, ", "It's my pleasure, ", "I know you'd do the same for me, ", "Don't mention it, ", "Anytime, ", "Sure, ", "It was nothing, ", "I'm happy to help, ", "Senang bisa membantumu, ", "Langsung transfer aja, ", "아니에요, ", "どういたしまして, ", "Sampeyan ditampani, ", "Sami-sami, "]
 
     for i in range(len(keyword1)):
         if keyword1[i] in message:
@@ -101,7 +103,13 @@ def handle_message(event):
             else:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, ' + profile.display_name + '. ' + respond1[random.randrange(len(respond1))]))
             break
-            
+
+        if keyword2[i] in message:
+            if event.source.user_id == id_sam:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=respond2[random.randrange(len(respond2))] + "sayang :)"))
+            else:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text=respond2[random.randrange(len(respond2))] + profile.display_name + '.'))
+            break
     
     
 #schedule
