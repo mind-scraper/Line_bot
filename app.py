@@ -75,28 +75,19 @@ def handle_message(event):
     if message == "cetak id grup":
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.group_id))
 
-    #respon several words
-#    for i in range(len(message)-2):
-#
-#        b = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
-#        if b == 'makasih' or b == 'Makasih':
-#            if event.source.user_id == id_sam:
-#                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang :)'))
-#            else:
-#                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name + '.'))
-#                break
-#        c = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]
-#        if c == 'UPDATE':
-#            if event.source.user_id == id_sam:
-#                line_bot_api.push_message(id_rivendell, TextSendMessage(text=message))
-#                break
-                
+    keyword0 = ["UPDATE!!!"]
     keyword1 = ["hi ", "hi,", "Hi ", "Hi,", "Hallo", "hallo", "Halo", "halo", "Selamat","selamat","Salam","salam"]
     respond1 = ["Semoga harimu menyenangkan.", "Sudah mandi belum?", "Jangan lupa makan ya.", "Semangat ya." , "Andai waktu itu Newton duduk di bawah pohon kelapa...", "Ilmuan yang belajar fisika disebut fisikawan.", "Cahaya dari bumi hanya butuh 1,255 detik untuk mencapai bulan, selama kamu membaca tulisan ini.", "Physics is, hopefully, simple. Physicists are not. -Edward Teller-", "Curiosity adalah robot penjelajah Mars milik NASA. Tak heran tidak ada kucing di Mars.", "It doesn't matter how beautiful your theory is, it doesn't matter how smart you are. If it doesn't agree with experiment, it's wrong. In that simple statement is the key to science.-Richard Feynman-","It's Okay to say I don't know! There's no shame in that! The only shame is to pretend that we know everything.-Richard Feynman-","Be yourself; everyone else is already taken.-Oscar Wilde-","It would be better for the true physics if there were no mathematicians on earth. -Daniel Bernoulli-", "Nature doesn't really care about your beliefs.-Richard Feynman-", "Membacalah setiap hari.", "Jangan berhenti belajar.", "Bertanyalah.", "Tidak apa-apa melakukan kesalahan baru.", "Fisikawan tidak suka mencari-cari masalah. Masalah mereka sudah cukup banyak.", "All science is either physics or stamp collecting.-Ernest Rutherford-", "Hukum gravitasi tidak berlaku terhadap orang yang sedang jatuh cinta.-Albert Einstein-" ]
     keyword2 = ["Terima kasih", "terima kasih", "thank", "Thank", "Mksh", "mksh", "Thx", "makasih", "Arigato", "arigato"]
-    respond2 = ["Sama-sama, ", "You're welcome, ", "No problem, ", "Halah santai, ", "It's my pleasure, ", "I know you'd do the same for me, ", "Don't mention it, ", "Anytime, ", "Sure, ", "It was nothing, ", "I'm happy to help, ", "Senang bisa membantumu, ", "Langsung transfer aja, ", "아니에요, ", "どういたしまして, ", "Sampeyan ditampani, ", "Sami-sami, "]
+    respond2 = ["Sama-sama, ", "You're welcome, ", "No problem, ", "Halah santai, ", "It's my pleasure, ", "I know you'd do the same for me, ", "Don't mention it, ", "Anytime, ", "Sure, ", "It was nothing, ", "I'm happy to help, ", "Senang bisa membantumu, ", "Langsung transfer aja, ", "아니에요, ", "どういたしまして, ", "Sami-sami, "]
 
+    #give specific response
     for i in range(len(keyword1)):
+        if keyword0[i] in message:
+            if event.source.user_id == id_sam:
+                line_bot_api.push_message(id_rivendell, TextSendMessage(text=message))
+            break
+
         if keyword1[i] in message:
             if event.source.user_id == id_sam:
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, sayang :) ' + respond1[random.randrange(len(respond1))]))
@@ -111,7 +102,6 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, TextSendMessage(text=respond2[random.randrange(len(respond2))] + profile.display_name + '.'))
             break
     
-    
 #schedule
 def nama(id):
     profile = line_bot_api.get_group_member_profile(id_rivendell, id)
@@ -122,29 +112,6 @@ piket_selasa = nama(id_anan) + "."
 piket_rabu = nama(id_nafis) + "."
 piket_kamis = nama(id_daniel) + ", " + nama(id_ayu) + "."
 piket_jumat = nama(id_bangbil) + ", " + nama(id_tab) + "."
-piket_sabtu = "Gifu dan anak-anaknya."
-piket_minggu = "Yoshi dan Gawa, cie."
-
-#def job(piket_hari):
-#    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_hari + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
-
-#schedule.every(0.5).minutes.do(job)
-#schedule.every().hour.do(job)
-#schedule.every().day.at("10:30").do(job)
-#schedule.every(5).to(10).minutes.do(job)
-#schedule.every().monday.do(job)
-#schedule.every().monday.at("15:00").do(job, piket_selasa)
-#schedule.every().tuesday.at("15:00").do(job, piket_rabu)
-#schedule.every().wednesday.at("15:00").do(job, piket_kamis)
-#schedule.every().thursday.at("15:00").do(job, piket_jumat)
-#schedule.every().friday.at("15:00").do(job, piket_sabtu)
-#schedule.every().saturday.at("15:00").do(job, piket_minggu)
-#schedule.every().sunday.at("15:00").do(job, piket_senin)
-#schedule.every().minute.at(":17").do(job)
-
-#while True:
-#    schedule.run_pending()
-#    time.sleep(1)
 
 sched = BackgroundScheduler()
 
@@ -170,12 +137,12 @@ def scheduled_job():
 
 @sched.scheduled_job('cron', day_of_week='fri', hour=15)
 def scheduled_job():
-    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_sabtu + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Besok tidak ada piket. Kalian bisa begadang sampai pagi."))
     scheduler.resume()
 
 @sched.scheduled_job('cron', day_of_week='sat', hour=15)
 def scheduled_job():
-    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_minggu + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+    line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Besok tidak ada piket. Kalian bisa begadang sampai pagi."))
     scheduler.resume()
 
 @sched.scheduled_job('cron', day_of_week='sun', hour=15)
