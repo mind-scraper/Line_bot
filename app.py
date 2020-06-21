@@ -82,7 +82,7 @@ def handle_message(event):
     respond2 = ["Sama-sama, ", "You're welcome, ", "No problem, ", "Halah santai, ", "It's my pleasure, ", "I know you'd do the same for me, ", "Don't mention it, ", "Anytime, ", "Sure, ", "It was nothing, ", "I'm happy to help, ", "Senang bisa membantumu, ", "Langsung transfer aja, ", "아니에요, ", "どういたしまして, ", "Sami-sami, "]
 
     #give specific response
-    for i in range(len(keyword1)):
+    for i in range(len(keyword0)):
         if keyword0[i] in message:
             if event.source.user_id == id_sam:
                 line_bot_api.push_message(id_rivendell, TextSendMessage(text=message))
