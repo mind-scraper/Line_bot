@@ -55,6 +55,7 @@ id_tab = 'U3823f9943c099dcc799f7aec0f80e216'
 def handle_message(event):
     
     message = event.message.text
+    profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
 
     #answer question
     if message[len(message)-1] == '?':
@@ -73,28 +74,34 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.source.group_id))
 
     #respon several words
-    for i in range(len(message)-2):
-        profile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
-        a = message[i]+message[i+1]+message[i+2]
-        if a == 'hi ' or a == 'Hi ':
-            if event.source.user_id == id_sam:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, sayang :)'))
-            else:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, ' + profile.display_name + '.'))
-                break
-        b = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
-        if b == 'makasih' or b == 'Makasih':
-            if event.source.user_id == id_sam:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang :)'))
-            else:
-                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name + '.'))
-                break
-        c = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]
-        if c == 'UPDATE':
-            if event.source.user_id == id_sam:
-                line_bot_api.push_message(id_rivendell, TextSendMessage(text=message))
-                break
+#    for i in range(len(message)-2):
+#
+#        b = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]+message[i+6]
+#        if b == 'makasih' or b == 'Makasih':
+#            if event.source.user_id == id_sam:
+#                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, sayang :)'))
+#            else:
+#                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Sama-sama, ' + profile.display_name + '.'))
+#                break
+#        c = message[i]+message[i+1]+message[i+2]+message[i+3]+message[i+4]+message[i+5]
+#        if c == 'UPDATE':
+#            if event.source.user_id == id_sam:
+#                line_bot_api.push_message(id_rivendell, TextSendMessage(text=message))
+#                break
+                
+    keyword1 = ["hi ", "hi,", "Hi ", "Hi,", "Hallo", "hallo", "Halo", "halo", "Selamat","selamat","Salam","salam"]
+    respond1 = ["Semoga harimu menyenangkan.", "Sudah mandi belum?", "Jangan lupa makan ya.", "Semangat ya." , "Andai waktu itu Newton duduk di bawah pohon kelapa...", "Ilmuan yang belajar fisika disebut fisikawan.", "Cahaya dari bumi hanya butuh 1,255 detik untuk mencapai bulan, selama kamu membaca tulisan ini.", "Physics is, hopefully, simple. Physicists are not. -Edward Teller-", "Curiosity adalah robot penjelajah Mars milik NASA. Tak heran tidak ada kucing di Mars.", "It doesn't matter how beautiful your theory is, it doesn't matter how smart you are. If it doesn't agree with experiment, it's wrong. In that simple statement is the key to science.-Richard Feynman-","It's Okay to say I don't know! There's no shame in that! The only shame is to pretend that we know everything.-Richard Feynman-","Be yourself; everyone else is already taken.-Oscar Wilde-","It would be better for the true physics if there were no mathematicians on earth. -Daniel Bernoulli-", "Nature doesn't really care about your beliefs.-Richard Feynman-", "Membacalah setiap hari.", "Jangan berhenti belajar.", "Bertanyalah.", "Tidak apa-apa melakukan kesalahan baru.", "Fisikawan tidak suka mencari-cari masalah. Masalah mereka sudah cukup banyak.", "All science is either physics or stamp collecting.-Ernest Rutherford-", "Hukum gravitasi tidak berlaku terhadap orang yang sedang jatuh cinta.-Albert Einstein-" ]
 
+    for i in range(len(keyword1)):
+        if keyword1[i] in message:
+            if event.source.user_id == id_sam:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, sayang :) ' + respond1[random.randrange(len(respond1))]))
+            else:
+                line_bot_api.reply_message(event.reply_token, TextSendMessage(text='Halo, ' + profile.display_name + '. ' + respond1[random.randrange(len(respond1))]))
+            break
+            
+    
+    
 #schedule
 def nama(id):
     profile = line_bot_api.get_group_member_profile(id_rivendell, id)
