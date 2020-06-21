@@ -1,5 +1,4 @@
 line-bot-sdk
 flask
 requests
-schedule
 APScheduler==3.6.3

@@ -12,12 +12,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 import requests
 
-import json
-
-import schedule
-
-import time
-
+import json 
 app = Flask(__name__)
 
 # Channel Access Token
@@ -64,7 +59,7 @@ def handle_message(event):
     #answer question
     if message[len(message)-1] == '?':
         query = message
-        api_result = requests.get('http://api.serpstack.com/search?access_key=392fb6da2083ccf6427359826b72f2aa&query=' + query + '&engine=google&google_domain=google.co.id&page=1&output=json&%20location=surabaya')
+        api_result = requests.get('http://api.serpstack.com/search?access_key=392fb6da2083ccf6427359826b72f2aa&query=' + query + '&engine=google&google_domain=google.co.id&page=1&output=json&%20location=surabaya&safe=1')
         api_response = api_result.json()
         for number, result in enumerate(api_response['organic_results']):
             if result['snippet'] != '':
@@ -156,7 +151,7 @@ def scheduled_job():
 def scheduled_job():
     line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_sabtu + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
 
-@sched.scheduled_job('cron', day_of_week='sat', hour=16)
+@sched.scheduled_job('cron', day_of_week='sat', hour=15)
 def scheduled_job():
     line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_minggu + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
 
