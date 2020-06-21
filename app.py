@@ -134,30 +134,37 @@ sched = BackgroundScheduler()
 @sched.scheduled_job('cron', day_of_week='mon', hour=15)
 def scheduled_job():
     line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_selasa + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+    scheduler.resume()
 
 @sched.scheduled_job('cron', day_of_week='tue', hour=15)
 def scheduled_job():
     line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_rabu + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+    scheduler.resume()
 
 @sched.scheduled_job('cron', day_of_week='wed', hour=15)
 def scheduled_job():
     line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_kamis + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+    scheduler.resume()
 
 @sched.scheduled_job('cron', day_of_week='thu', hour=15)
 def scheduled_job():
     line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_jumat + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+    scheduler.resume()
 
 @sched.scheduled_job('cron', day_of_week='fri', hour=15)
 def scheduled_job():
     line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_sabtu + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+    scheduler.resume()
 
 @sched.scheduled_job('cron', day_of_week='sat', hour=15)
 def scheduled_job():
     line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_minggu + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+    scheduler.resume()
 
 @sched.scheduled_job('cron', day_of_week='sun', hour=15)
 def scheduled_job():
     line_bot_api.push_message(id_rivendell, TextSendMessage(text="Selamat malam, Rivendellian. Petugas piket besok adalah " + piket_senin + "Kalian segera tidur biar bisa bangun pagi ya... :)"))
+    scheduler.resume()
 
 sched.start()
 
