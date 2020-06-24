@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Line Bot 教學
 
 本教程介紹如何使用 Python LINE Bot SDK 在 Heroku 上架設一個簡單的回話機器人。
@@ -392,3 +393,7 @@ message = TemplateSendMessage(
 )
 line_bot_api.reply_message(event.reply_token, message)
 ```
+=======
+# Line_bot
+Bot to remind Rivendellian to do their main job: clean up. 
+>>>>>>> 26b815ba39ae120b8b13960cb0a6502d78fad7d6
